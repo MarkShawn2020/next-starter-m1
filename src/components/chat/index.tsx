@@ -7,7 +7,7 @@ export default function Chat() {
   const messages: BasicChatMessage[] = []
 
   return (
-    <div className={"w-full grow flex flex-col items-center bg-green-300"}>
+    <div className={"container grow flex flex-col items-center bg-green-300"}>
       {messages.map((message) => (
         <ChatMessage message={message} key={message.id} />
       ))}

@@ -27,11 +27,12 @@ export default function Navbar() {
         </Badge>
       </div>
 
-      <div className={"flex items-center gap-2 md:hidden"}>
+      <div className={"flex items-center gap-2 text-sm"}>
         <VscFeedback />
+        <span className={"hidden md:block"}>意见反馈</span>
 
         <Sheet>
-          <SheetTrigger>
+          <SheetTrigger className={"md:hidden"}>
             <AiOutlineMenuUnfold />
           </SheetTrigger>
           <SheetContent side={"left"}>

@@ -11,7 +11,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <Theme>
       <Component {...pageProps} />
 
-      <ThemePanel />
+      <ThemePanel defaultOpen={false} />
     </Theme>
   )
 }

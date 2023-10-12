@@ -32,7 +32,10 @@ export default function Home() {
           <div className={"hidden md:flex"}>
             <Sidebar />
           </div>
-          <Chat />
+
+          <div className={"grow flex flex-col"}>
+            <Chat />
+          </div>
         </div>
       </main>
     </>
