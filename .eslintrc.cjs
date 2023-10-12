@@ -10,6 +10,7 @@ const config = {
     "plugin:@typescript-eslint/recommended-type-checked",
   ],
   rules: {
+    "@typescript-eslint/no-unused-vars": "warn"
   },
 };
 
