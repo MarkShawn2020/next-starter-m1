@@ -17,7 +17,9 @@ export default function ChatMessage({
         <AvatarFallback>Doctor</AvatarFallback>
       </Avatar>
 
-      <div className={"bg-white rounded p-2 flex flex-col gap-2 text-sm"}>
+      <div
+        className={"bg-white rounded p-2 md:p-4 flex flex-col gap-2 text-sm"}
+      >
         <p>{message.content}</p>
 
         {message.role === "system" && (
@@ -30,6 +32,8 @@ export default function ChatMessage({
             ))}
           </div>
         )}
+
+        {/*    todo: user/assistant */}
       </div>
     </div>
   )
