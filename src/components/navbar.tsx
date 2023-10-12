@@ -3,6 +3,14 @@ import Image from "next/image"
 import { Badge } from "@radix-ui/themes"
 import { VscFeedback } from "react-icons/vsc"
 import { AiOutlineMenuUnfold } from "react-icons/ai"
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet"
 
 export default function Navbar() {
   return (
@@ -21,7 +29,21 @@ export default function Navbar() {
 
       <div className={"flex items-center gap-2 md:hidden"}>
         <VscFeedback />
-        <AiOutlineMenuUnfold />
+
+        <Sheet>
+          <SheetTrigger>
+            <AiOutlineMenuUnfold />
+          </SheetTrigger>
+          <SheetContent side={"left"}>
+            <SheetHeader>
+              <SheetTitle>Are you sure absolutely sure?</SheetTitle>
+              <SheetDescription>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </SheetDescription>
+            </SheetHeader>
+          </SheetContent>
+        </Sheet>
       </div>
     </div>
   )
