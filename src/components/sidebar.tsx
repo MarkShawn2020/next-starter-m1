@@ -2,6 +2,7 @@ import { Button } from "./ui/button"
 import { GrAddCircle } from "react-icons/gr"
 import { api } from "@/utils/api"
 import { useContext } from "react"
+import { BsChatText, BsPencilSquare, BsTrash3 } from "react-icons/bs"
 
 export default function Sidebar() {
   const utils = api.useContext()
@@ -12,7 +13,7 @@ export default function Sidebar() {
     })
 
   return (
-    <div className={"w-48 p-4"}>
+    <div className={"w-72 p-4 flex flex-col gap-2"}>
       <Button
         className={"w-full gap-2"}
         onClick={async () => {
@@ -24,7 +25,17 @@ export default function Sidebar() {
         <span>新建对话</span>
       </Button>
 
-      {conversations?.map((c) => <div key={c.id}>{c.id}</div>)}
+      {conversations?.map((c) => (
+        <div
+          key={c.id}
+          className={"flex items-center gap-2 p-2 bg-white rounded"}
+        >
+          <BsChatText />
+          <span className={"truncate"}>{c.id}</span>
+          <BsPencilSquare />
+          <BsTrash3 />
+        </div>
+      ))}
     </div>
   )
 }

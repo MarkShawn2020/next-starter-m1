@@ -11,6 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet"
+import Sidebar from "@/components/sidebar"
 
 export default function Navbar() {
   return (
@@ -36,13 +37,7 @@ export default function Navbar() {
             <AiOutlineMenuUnfold />
           </SheetTrigger>
           <SheetContent side={"left"}>
-            <SheetHeader>
-              <SheetTitle>Are you sure absolutely sure?</SheetTitle>
-              <SheetDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-              </SheetDescription>
-            </SheetHeader>
+            <Sidebar />
           </SheetContent>
         </Sheet>
       </div>
