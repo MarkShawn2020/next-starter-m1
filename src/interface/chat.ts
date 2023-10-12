@@ -1,8 +1,11 @@
+import { $Enums } from ".prisma/client"
+import PromptRole = $Enums.PromptRole
+
 /**
  * chatgpt 的原生数据结构
  */
 export interface ChatgptMessage {
-  role: "system" | "user" | "assistant"
+  role: PromptRole
   content: string
 }
 

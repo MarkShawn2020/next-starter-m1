@@ -3,14 +3,7 @@ import Image from "next/image"
 import { Badge } from "@radix-ui/themes"
 import { VscFeedback } from "react-icons/vsc"
 import { AiOutlineMenuUnfold } from "react-icons/ai"
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "./ui/sheet"
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet"
 import Sidebar from "@/components/sidebar"
 
 export default function Navbar() {
