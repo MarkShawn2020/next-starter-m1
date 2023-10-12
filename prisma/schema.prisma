@@ -2,19 +2,55 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-model Example {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+/// models
 
-    @@index([name])
+model Example {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
+}
+
+model User {
+  id           String         @id @default(cuid())
+  avatar       String?
+  Conversation Conversation[]
+}
+
+model Conversation {
+  id String @id @default(cuid())
+
+  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId  String
+  Message Message[]
+}
+
+model Message {
+  id String @id @default(cuid())
+
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  conversationId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  role    PromptRole
+  content String
+}
+
+/// enum
+enum PromptRole {
+  system
+  assistant
+  user
 }
