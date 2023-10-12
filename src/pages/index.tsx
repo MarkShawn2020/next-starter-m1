@@ -29,7 +29,9 @@ export default function Home() {
 
         {/*  横向 */}
         <div className={"flex w-full grow bg-cyan-400"}>
-          <Sidebar />
+          <div className={"hidden md:flex"}>
+            <Sidebar />
+          </div>
           <Chat />
         </div>
       </main>
