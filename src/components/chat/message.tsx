@@ -1,15 +1,10 @@
-import { BasicChatMessage } from "@/interface/chat"
-import Image from "next/image"
 import { Assets } from "@/utils/assets"
 import { DEFAULT_PROMPTS } from "@/settings/chat"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Message } from ".prisma/client"
 
-export default function ChatMessage({
-  message,
-}: {
-  message: BasicChatMessage
-}) {
+export default function ChatMessage({ message }: { message: Message }) {
   return (
     <div className={"w-full flex gap-2"}>
       <Avatar className={"rounded"}>

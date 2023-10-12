@@ -7,17 +7,36 @@ import { toast } from "sonner"
 import { getHotkeyHandler, useHotkeys } from "@mantine/hooks"
 
 export default function ChatInput() {
+  const utils = api.useContext()
   const { userId } = useUserId()
-  const { conversationId } = useConversationId()
+  let { conversationId, setConversationId } = useConversationId()
 
-  const { mutateAsync: asyncAddChatMessage } = api.chatMessage.add.useMutation()
+  const { mutateAsync: asyncAddConversation } =
+    api.conversation.add.useMutation({})
+  const { mutateAsync: asyncAddChatMessage } = api.chatMessage.add.useMutation({
+    onSuccess: async (result) => {
+      toast.message(`created message(id=${result.id})`)
+      await utils.chatMessage.list.invalidate()
+    },
+  })
   const contentRef = useRef<HTMLTextAreaElement>(null)
 
   const onSubmit = async () => {
     if (!userId) return toast.error("请先登陆！")
 
+    const content = contentRef.current!.value
+    if (!content) return toast.error("请先输入点内容再发送吧！")
+
+    // 初始化 conversationId
+    if (!conversationId) {
+      const result = await asyncAddConversation({ userId })
+      conversationId = result.id
+      setConversationId(result.id)
+      toast.message(`created conversation(id=${conversationId})`)
+    }
+
     await asyncAddChatMessage({
-      content: contentRef.current!.value,
+      content,
       role: "user",
       userId,
       conversationId,

@@ -6,10 +6,12 @@ export const chatMessageRouter = createTRPCRouter({
   list: publicProcedure
     .input(
       z.object({
-        conversationId: z.string(),
+        conversationId: z.string().optional(),
       }),
     )
     .query(({ ctx, input }) => {
+      if (!input.conversationId) return []
+
       return ctx.db.message.findMany({
         where: {
           conversationId: input.conversationId,
@@ -22,28 +24,22 @@ export const chatMessageRouter = createTRPCRouter({
       z.object({
         userId: z.string(),
         // conversation 可以发起的时候再创建
-        conversationId: z.string().optional(),
+        conversationId: z.string(),
         role: z.enum(["user", "assistant"]),
         content: z.string(),
       }),
     )
     .mutation(({ ctx, input }) => {
       return ctx.db.message.create({
+        include: {
+          conversation: true,
+        },
         data: {
           role: input.role,
           content: input.content,
           conversation: {
-            connectOrCreate: {
-              where: {
-                id: input.conversationId,
-              },
-              create: {
-                user: {
-                  connect: {
-                    id: input.userId,
-                  },
-                },
-              },
+            connect: {
+              id: input.conversationId,
             },
           },
         },

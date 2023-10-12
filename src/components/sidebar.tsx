@@ -1,11 +1,14 @@
 import { Button } from "./ui/button"
 import { GrAddCircle } from "react-icons/gr"
 import { api } from "@/utils/api"
-import { useContext } from "react"
 import { BsChatText, BsPencilSquare, BsTrash3 } from "react-icons/bs"
+import dynamic from "next/dynamic"
+
+const UserLine = dynamic(() => import("./user"), { ssr: false })
 
 export default function Sidebar() {
   const utils = api.useContext()
+
   const { data: conversations } = api.conversation.list.useQuery()
   const { mutateAsync: asyncAddConversation } =
     api.conversation.add.useMutation({
@@ -36,6 +39,10 @@ export default function Sidebar() {
           <BsTrash3 />
         </div>
       ))}
+
+      <div className={"grow"} />
+
+      <UserLine />
     </div>
   )
 }

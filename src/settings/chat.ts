@@ -1,14 +1,16 @@
-import { BasicChatMessage } from "@/interface/chat"
+import { Message } from ".prisma/client"
 
-export const DEFAULT_CHAT_MESSAGE: BasicChatMessage = {
+export const DEFAULT_CHAT_MESSAGE: Message = {
+  // todo: explicit
   id: "default",
+  conversationId: "default",
+
   // 目前把 system 与系统预设绑定在一起，方便编程，后续可能需要独立设计
   role: "system",
   content: "您好，我是24小时陪伴您的健康助理",
-  user: {
-    id: "default",
-    avatar: "/image/doctor.png",
-  },
+
+  createdAt: new Date(),
+  updatedAt: new Date(),
 }
 export const DEFAULT_PROMPTS = [
   "突然头疼是怎么回事",

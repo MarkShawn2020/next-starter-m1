@@ -9,7 +9,7 @@ export default function Home() {
     <RootLayout>
       <main
         className={clsx(
-          "w-screen min-h-screen flex flex-col items-center justify-center ",
+          "w-screen h-screen flex flex-col items-center justify-center ",
           // "bg-gradient-to-b from-[#2e026d] to-[#15162c]"
         )}
       >
@@ -17,14 +17,12 @@ export default function Home() {
         <Navbar />
 
         {/*  横向 */}
-        <div className={"flex w-full grow bg-cyan-400"}>
+        <div className={"flex w-full grow bg-cyan-400 overflow-hidden"}>
           <div className={"hidden md:flex"}>
             <Sidebar />
           </div>
 
-          <div className={"grow flex flex-col"}>
-            <Chat />
-          </div>
+          <Chat />
         </div>
       </main>
     </RootLayout>
