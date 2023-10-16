@@ -54,8 +54,3 @@ export const useUserId = createBearStore<string | undefined>()(
   undefined,
   true,
 )
-export const useConversationId = createBearStore<string | undefined>()(
-  "conversationId",
-  undefined,
-  true,
-)
