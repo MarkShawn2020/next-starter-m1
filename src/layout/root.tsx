@@ -1,6 +1,5 @@
 import Head from "next/head"
-import { PropsWithChildren, useEffect } from "react"
-import { useUserId } from "@/hooks/use-bear-store"
+import { PropsWithChildren } from "react"
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (

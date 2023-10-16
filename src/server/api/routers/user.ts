@@ -16,6 +16,7 @@ export const userRouter = createTRPCRouter({
         },
       })
     }),
+
   register: publicProcedure
     .input(
       z.object({
