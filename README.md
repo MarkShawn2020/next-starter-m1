@@ -1,4 +1,4 @@
-# 百川医疗前端
+# NextJS Starter
 
 ## Technology
 
